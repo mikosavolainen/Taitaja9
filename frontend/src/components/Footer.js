@@ -5,8 +5,15 @@ function Footer() {
 
   return (
     <footer>
-          <h2>Taitaja2025 -semifinaali</h2>
-          <span>Konsta Laurell | Koulutuskeskus Salpaus</span>
+      <div className="links">
+        <li> <a href='https://taitaja2024.fi/fi/tietoa-sivustosta/'>Tietoa sivustosta</a></li>
+        <li><a href='https://taitaja2024.fi/fi/tietosuojakaytanto/'>Tietosuojakäytäntö</a></li>
+        <li><a href='https://taitaja2024.fi/fi/saavutettavuusseloste/'>Saavutettavuusseloste</a></li>
+        <li><a href='https://taitaja2024.fi/fi/lajivastaaville/'>Lajivastaaville</a></li>
+      </div>
+      <div className="copyright">
+        <p>© Salpaus 2025</p>
+      </div>
     </footer>
   )
 }

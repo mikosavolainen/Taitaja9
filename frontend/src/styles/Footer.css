@@ -1,12 +1,16 @@
 footer{
-    background-color: #2B3E50;
+    background-image: linear-gradient(to right, #8206FF, #4E0499);
     padding: 1em;
-    
-    text-align: center;}
-h2{
-    margin: 0;
-    color: #F9FBFC;
+    color: white;
 }
-span{
-    color: #F9FBFC;
+.links{
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.copyright{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 }
