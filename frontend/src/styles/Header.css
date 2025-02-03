@@ -1,0 +1,26 @@
+Header{
+    display: flex;
+    text-align: center;
+    justify-content: space-between;
+    background-color: #2B3E50;
+
+}
+.logo{
+    color: black;
+    font-size: 1.5em;
+    margin: 0.7em;
+    font-weight: 700;
+}
+
+.link {
+    color: black;
+    margin: auto 0.5em;
+}
+.headerthingy{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0.5em;
+    font-size: 1.5em;
+    font-weight: 700;
+}
