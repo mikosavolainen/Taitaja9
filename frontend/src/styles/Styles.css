@@ -105,6 +105,7 @@
 
 
 
+
 /********************************************* Rasti ajansyöttö PAGE ********************************************/
 
 .rasti-background {
@@ -307,3 +308,107 @@
   }
   
    /*********************************************Kilpailun lisäys********************************************/
+
+
+/********************************************* AddTeam PAGE ********************************************/
+
+.addteam-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: url("../images/tausta.png") no-repeat center center;
+  background-size: cover;
+  color: #fff;
+}
+
+.addteam-content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.addteam-box {
+  background: #8206FF;
+  border-radius: 40px;
+  width: 500px;
+  padding: 30px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.addteam-title {
+  font-size: 28px;
+  margin-bottom: 25px;
+  color: #fff;
+  font-family: "Ubuntu", sans-serif;
+  font-weight: bold;
+}
+
+.addteam-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.addteam-input {
+  display: inline-block;
+  background: #06CFFF;
+  border: none;
+  border-radius: 15px;
+  padding: 12px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  text-align: center;
+  cursor: pointer;
+  width: 80%;
+  max-width: 350px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  color: #000;
+  transition: background 0.3s ease;
+}
+
+.addteam-input:focus {
+  border: 2px solid #FFF;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+.addteam-input::placeholder {
+  color: #333;
+  opacity: 0.7;
+}
+
+.addteam-button {
+  background: #5603A3;
+  color: #FFF;
+  border: none;
+  border-radius: 30px;
+  padding: 15px;
+  font-size: 18px;
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 500;
+  text-align: center;
+  width: 75%;
+  max-width: 300px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.addteam-button:hover {
+  background: #5C00B8;
+  transform: scale(1.05);
+}
+.addteam-input:hover {
+  background: #05a4d9;
+}
+/********************************************* AddTeam PAGE ********************************************/

@@ -6,6 +6,7 @@ import Etusivu from './pages/Etusivu';
 import ServerNotFound from './pages/ServerNotFound';
 import Infotaulu from './pages/Infotaulu';
 import RastiInput from './pages/RastiInput';
+import AddTeam from './pages/Addteam';
 import KilpailuInput from './pages/KilpailunHallinta';
 function App() {
   return (
