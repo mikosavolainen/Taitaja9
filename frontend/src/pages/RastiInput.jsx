@@ -30,9 +30,24 @@ const RastiInput = () => {
         </select>
         
         <div className="rasti-time-inputs">
-          <input className="rasti-time" min="0" type="number" placeholder="MIN" value={minutes} onChange={(e) => setMinutes(e.target.value)} />
-          <input className="rasti-time" min="0" type="number" placeholder="SEC" value={seconds} onChange={(e) => setSeconds(e.target.value)} />
+          <input 
+            className="rasti-time" 
+            type="number" 
+            min="0" 
+            placeholder="MIN" 
+            value={minutes} 
+            onChange={(e) => setMinutes(Math.max(0, e.target.value))} 
+          />
+          <input 
+            className="rasti-time" 
+            type="number" 
+            min="0" 
+            placeholder="SEC" 
+            value={seconds} 
+            onChange={(e) => setSeconds(Math.max(0, e.target.value))} 
+          />
         </div>
+
         
         <button className="rasti-button">Tallenna</button>
       </div>
