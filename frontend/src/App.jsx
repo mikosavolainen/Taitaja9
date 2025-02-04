@@ -6,11 +6,12 @@ import Etusivu from './pages/Etusivu';
 import ServerNotFound from './pages/ServerNotFound';
 import Infotaulu from './pages/Infotaulu';
 import RastiInput from './pages/RastiInput';
+import KilpailuInput from './pages/KilpailunHallinta';
 function App() {
   return (
     <div className="App">
       <Header />
-      <RastiInput /> 
+      <KilpailuInput /> 
       <Footer />   
     </div>
   );
