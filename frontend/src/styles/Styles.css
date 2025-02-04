@@ -263,51 +263,51 @@
     background-size: cover;
 }
 .kilpailu-container {
-    background-color: #8206FF; /* Violetti tausta */
-    border-radius: 16px;
-    padding: 20px;
-    max-width: 300px;
-    margin: 50px auto;
-    text-align: center;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-  }
-  
-  .kilpailu-title {
-    color: #ffffff;
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 20px;
-  }
-  
-  .kilpailu-input {
-    width: 100%;
-    background-color: #00d9ff; /* Sininen syöttökentän tausta */
-    border: none;
-    border-radius: 8px;
-    padding: 10px;
-    margin-bottom: 15px;
-    font-size: 16px;
-    color: #010101; /* Musta teksti */
-  }
-  
-  .kilpailu-button {
-    width: 100%;
-    background-color: #5603A3; /* Tumma violetti painike */
-    color: #ffffff; /* Valkoinen teksti */
-    border: none;
-    border-radius: 8px;
-    padding: 12px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
-  }
-  
-  .kilpailu-button:hover {
-    background-color: #371267; /* Tummempi hover-efekti */
-  }
-  
-   /*********************************************Kilpailun lisäys********************************************/
+  background-color: #8206FF; /* Violetti tausta */
+  border-radius: 16px;
+  padding: 20px;
+  max-width: 30%; 
+  margin: 5% auto; /* Suhteellinen marginaali */
+  text-align: center;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.kilpailu-title {
+  color: #ffffff;
+  font-size: 1.25em; /* Suhteellinen fonttikoko */
+  font-weight: bold;
+  margin-bottom: 1.25em; /* Suhteellinen marginaali */
+}
+
+.kilpailu-input {
+  width: 90%; /* Suhteellinen leveys */
+  background-color: #00d9ff; /* Sininen syöttökentän tausta */
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 1em; /* Suhteellinen marginaali */
+  font-size: 1em; /* Suhteellinen fonttikoko */
+  color: #010101; /* Musta teksti */
+}
+
+.kilpailu-button {
+  width: 90%; /* Suhteellinen leveys */
+  background-color: #5603A3; /* Tumma violetti painike */
+  color: #ffffff; /* Valkoinen teksti */
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 1em; /* Suhteellinen fonttikoko */
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.kilpailu-button:hover {
+  background-color: #371267; /* Tummempi hover-efekti */
+}
+
+/*********************************************Kilpailun lisäys********************************************/
 
 
 /********************************************* AddTeam PAGE ********************************************/
