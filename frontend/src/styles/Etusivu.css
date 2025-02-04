@@ -1,0 +1,52 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background: url("../images/tausta.png") no-repeat center center;
+    background-size: cover;
+    position: relative;
+    color: white;
+    padding-bottom: 75px;
+}
+  .container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(2px);
+    background: rgba(0, 0, 0, 0.4);
+  }
+.toplist {
+    width: 50%;
+    list-style-type: decimal;
+    list-style-position: inside;
+}
+
+.toplist ol {
+    padding-left: 20px;
+}
+
+.toplist li {
+    font-size: 1.2rem; 
+    margin-bottom: 8px;
+    margin: 20px;
+}
+.info {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center; 
+    text-align: center;
+    width: 40%;
+}
+
+.textia {
+    width: 60%;
+    margin: 0 auto;
+    text-align: center;
+}
+.padding{
+    height: 100px;
+}
