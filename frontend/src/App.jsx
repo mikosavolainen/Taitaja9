@@ -4,12 +4,13 @@ import Header from './components/Header';
 //import NotFound from './pages/NotFound';
 //import Etusivu from './pages/Etusivu';
 //import ServerNotFound from './pages/ServerNotFound';
+import RastiInput from './pages/RastiInput';
 function App() {
   return (
     <div className="App">
       <Header />
-      <Footer />      
-
+      <RastiInput /> 
+      <Footer />   
     </div>
   );
 }

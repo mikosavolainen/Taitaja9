@@ -1,12 +1,9 @@
 import React from "react";
 import "../styles/NotFound.css";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
 
 const ServerNotFound = () => {
   return (
     <div>
-    <Header />
     <div className="not-found-container">
       <div className="content">
         <div className="error-box">
@@ -18,7 +15,6 @@ const ServerNotFound = () => {
         </div>
       </div>
     </div>
-    <Footer />
     </div>
   );
 };
