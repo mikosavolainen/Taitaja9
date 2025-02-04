@@ -1,11 +1,11 @@
 import React from "react";
-import "../styles/NotFound.css";
+import "../styles/Styles.css";
 
 const ServerNotFound = () => {
   return (
     <div>
     <div className="not-found-container">
-      <div className="content">
+      <div className="error-content">
         <div className="error-box">
           <h1 className="error-code">500</h1>
           <p className="error-text">Meidän päässä meni jokin vikaan.</p>
