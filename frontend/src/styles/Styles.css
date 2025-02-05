@@ -498,9 +498,21 @@ font-weight: bold;
 margin-bottom: 1.25em; 
 }
 
+.adduser-inputbox {
+  width: calc(90% + 20px); 
+  background-color: #00d9ff; 
+  border: none;
+  border-radius: 8px;
+  padding: 10px 10px 10px 10px;
+  margin-bottom: 1em; 
+  font-size: 1em; 
+  color: #010101; 
+  }
+
 .adduser-input {
 width: 90%; 
-background-color: #00d9ff; 
+background-color: #00d9ff;
+
 border: none;
 border-radius: 8px;
 padding: 10px;

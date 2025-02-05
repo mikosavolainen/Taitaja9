@@ -20,7 +20,7 @@ const AddUser = () => {
         className="adduser-input" 
         placeholder="Salasana" 
       />
-      <select className="adduser-input" value={selectedrole} onChange={(e) => setSelectedrole(e.target.value)}>
+      <select className="adduser-inputbox" value={selectedrole} onChange={(e) => setSelectedrole(e.target.value)}>
           <option value="">Rooli</option>
           {roles.map((role) => (
             <option key={role} value={role}>{role}</option>
