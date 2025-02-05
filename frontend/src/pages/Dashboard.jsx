@@ -9,47 +9,46 @@ const Dashboard = () => {
 		<div className="login-container">
 			<div className="login-content">
 				<div className="login-box">
-					<h2 className="login-title">KIRJAUTUMINEN</h2>
-					<form className="login-form">
-						<input
-							type="text"
-							placeholder="Käyttäjänimi"
-							className="login-input"
-						/>
-						<input
-							type="password"
-							placeholder="Salasana"
-							className="login-input"
-						/>
-						<button type="submit" className="login-button">
-							LOGIN
-						</button>
-					</form>
 					<div className="links-container">
 						{userType === "admin" ? (
 							<>
 								<Link
 									to="/admin-dashboard"
-									className="login-link">
-									Admin Dashboard
+									className="login-input">
+									joukkueiden hallintapaneeli
 								</Link>
 								<Link
 									to="/admin-settings"
-									className="login-link">
-									Admin Settings
+									className="login-input">
+									Kilpailun hallintapaneeli
+								</Link>
+								<Link
+									to="/admin-settings"
+									className="login-input">
+									Lisää joukkueita csv:n avulla
+								</Link>
+								<Link
+									to="/admin-settings"
+									className="login-input">
+									Tee uusia käyttäjiä
+								</Link>
+								<Link
+									to="/admin-settings"
+									className="login-input">
+									Salasananvaihto
 								</Link>
 							</>
 						) : (
 							<>
 								<Link
 									to="/user-dashboard"
-									className="login-link">
-									User Dashboard
+									className="login-input">
+									Lisää joukkueelle aika
 								</Link>
 								<Link
 									to="/user-settings"
-									className="login-link">
-									User Settings
+									className="login-input">
+									Vaihda salasanaa
 								</Link>
 							</>
 						)}

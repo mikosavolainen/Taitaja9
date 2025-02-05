@@ -540,3 +540,10 @@ background-color: #371267;
 }
 
 /*********************************************AddUser********************************************/
+.links-container{
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  text-align: center;
+  align-items: center;
+}

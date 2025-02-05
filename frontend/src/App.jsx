@@ -10,13 +10,14 @@ import AddTeam from './pages/Addteam';
 import UusiKilpailu from './pages/UusiKilpailu';//
 import VaihdaSalasana from './pages/VaihdaSalasana';//
 import AddUser from './pages/AddUser';//
+import Dashboard from "./pages/Dashboard";
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <AddUser /> 
-      <Footer />   
-    </div>
+		<div className="App">
+			<Header />
+			<Dashboard />
+			<Footer />
+		</div>
   );
 }
 
