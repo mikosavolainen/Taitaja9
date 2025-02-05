@@ -18,35 +18,33 @@ const Dashboard = () => {
 									joukkueiden hallintapaneeli
 								</Link>
 								<Link
-									to="/admin-settings"
+									to="/UusiKilpailu"
 									className="login-input">
-									Kilpailun hallintapaneeli
+									Uusi kilpailu
 								</Link>
 								<Link
-									to="/admin-settings"
+									to="/lisaajoukkue"
 									className="login-input">
 									Lisää joukkueita csv:n avulla
 								</Link>
 								<Link
-									to="/admin-settings"
+									to="/lisaakayttaja"
 									className="login-input">
 									Tee uusia käyttäjiä
 								</Link>
 								<Link
-									to="/admin-settings"
+									to="/VaihdaSalasana"
 									className="login-input">
-									Salasananvaihto
+									Vaihda salasanaa
 								</Link>
 							</>
 						) : (
 							<>
-								<Link
-									to="/user-dashboard"
-									className="login-input">
+								<Link to="/RastiInput" className="login-input">
 									Lisää joukkueelle aika
 								</Link>
 								<Link
-									to="/user-settings"
+									to="/VaihdaSalasana"
 									className="login-input">
 									Vaihda salasanaa
 								</Link>

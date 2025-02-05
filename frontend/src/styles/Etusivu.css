@@ -6,9 +6,11 @@
     background-size: cover;
     position: relative;
     color: white;
+        z-index: -2;
     padding-bottom: 75px;
 }
   .container::before {
+    z-index: -1;
     content: "";
     position: absolute;
     top: 0;
@@ -23,7 +25,10 @@
     list-style-type: decimal;
     list-style-position: inside;
 }
-
+.content {
+    display: flex;
+    align-items: center;
+}
 .toplist ol {
     padding-left: 20px;
 }

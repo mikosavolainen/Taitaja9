@@ -547,3 +547,21 @@ background-color: #371267;
   text-align: center;
   align-items: center;
 }
+.rasti-button-small {
+    background: #5603A3;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 5px;
+    font-size: 10px;
+    cursor: pointer;
+    width: 10%;
+    max-width: 300px;
+    margin-top: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+.contain{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
