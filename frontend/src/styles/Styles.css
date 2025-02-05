@@ -412,3 +412,131 @@
   background: #05a4d9;
 }
 /********************************************* AddTeam PAGE ********************************************/
+
+
+/*********************************************Salasanan vaihto********************************************/
+  .salasana-background {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url("../images/tausta.png") no-repeat center center;
+    background-size: cover;
+}
+.salasana-container {
+  background-color: #8206FF; 
+  border-radius: 16px;
+  padding: 20px;
+  max-width: 30%; 
+  margin: 5% auto; 
+  text-align: center;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.salasana-title {
+  color: #ffffff;
+  font-size: 1.25em; 
+  font-weight: bold;
+  margin-bottom: 1.25em; 
+}
+
+.salasana-input {
+  width: 90%; 
+  background-color: #00d9ff; 
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 1em; 
+  font-size: 1em; 
+  color: #010101; 
+}
+
+.salasana-button {
+  width: 90%; 
+  background-color: #5603A3; 
+  color: #ffffff; 
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 1em; 
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.salasana-button:hover {
+  background-color: #371267; 
+}
+
+/*********************************************Salasanan vaihto********************************************/
+/*********************************************AddUser********************************************/
+
+.adduser-background {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: url("../images/tausta.png") no-repeat center center;
+  background-size: cover;
+}
+.adduser-container {
+background-color: #8206FF; 
+border-radius: 16px;
+padding: 20px;
+max-width: 30%; 
+margin: 5% auto; 
+text-align: center;
+box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.adduser-title {
+color: #ffffff;
+font-size: 1.25em; 
+font-weight: bold;
+margin-bottom: 1.25em; 
+}
+
+.adduser-inputbox {
+  width: calc(90% + 20px); 
+  background-color: #00d9ff; 
+  border: none;
+  border-radius: 8px;
+  padding: 10px 10px 10px 10px;
+  margin-bottom: 1em; 
+  font-size: 1em; 
+  color: #010101; 
+  }
+
+.adduser-input {
+width: 90%; 
+background-color: #00d9ff;
+
+border: none;
+border-radius: 8px;
+padding: 10px;
+margin-bottom: 1em; 
+font-size: 1em; 
+color: #010101; 
+}
+
+
+.adduser-button {
+width: 90%; 
+background-color: #5603A3; 
+color: #ffffff; 
+border: none;
+border-radius: 8px;
+padding: 12px;
+font-size: 1em; 
+font-weight: bold;
+cursor: pointer;
+box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.adduser-button:hover {
+background-color: #371267; 
+}
+
+/*********************************************AddUser********************************************/
