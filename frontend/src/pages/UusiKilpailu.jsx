@@ -1,7 +1,7 @@
 import * as React from "react";
 import "../styles/Styles.css";
 
-const KilpailuInput = () => {
+const UusiKilpailu = () => {
   return (
     <div className="kilpailu-background">
       <div className="kilpailu-container">
@@ -29,4 +29,4 @@ const KilpailuInput = () => {
   );
 };
 
-export default KilpailuInput;
+export default UusiKilpailu;
