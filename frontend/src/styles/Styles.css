@@ -698,4 +698,53 @@ background-color: #371267;
 }
 
 /*********************************************Etusivu********************************************/
-/*********************************************Etusivu********************************************/
+/*********************************************Infotaulu********************************************/
+.infotaulu-info-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: url("../images/tausta.png") no-repeat center center;
+  background-size: cover;
+  position: relative;
+  z-index: -2;
+}
+.infotaulu-info-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(2px);
+  background: rgba(0, 0, 0, 0.4);
+      z-index: -1;
+}
+
+.infotaulu-info-box {
+  background: #8206FF;
+  border-radius: 40px; 
+  width: 500px;
+  height: 450px;
+  padding: 30px; 
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); 
+}
+.infotaulu-content{
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  align-items: center;
+}
+
+.infotaulu-keskelle {
+  margin: auto;
+  font-size: 24px;
+  font-style: italic;
+  font-weight: bold;
+  color: white;
+}
+/*********************************************Infotaulu********************************************/

@@ -1,14 +1,14 @@
 import React from 'react';
-import '../styles/Infotaulu.css';
+import '../styles/Styles.css';
 const Infotaulu = () => {
 	return (
 		<div>
 			<header className="header">
-				<div className="keskelle">TAITAJA9 LIVE TILASTOT</div>
+				<div className="infotaulu-keskelle">TAITAJA9 LIVE TILASTOT</div>
 			</header>
-			<div className="info-container">
-				<div className="content">
-					<div className="info-box">
+			<div className="infotaulu-info-container">
+				<div className="infotaulu-content">
+					<div className="infotaulu-info-box">
 						<h1>Kisan tulostaulu</h1>
 						<h2>
 							<ol>
