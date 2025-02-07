@@ -13,7 +13,10 @@ import AddUser from "./pages/AddUser"; //
 import Dashboard from "./pages/Dashboard";
 import { Routes, Route } from "react-router-dom";
 import Joukkuehallinta from "./pages/JoukkueHallinta";
-import Login from "./pages/Login";
+import Login from "./pages/Login";//
+import Tulostaulu from './pages/Tulostaulu';//
+
+
 import { useState } from "react";
 function App() {
 	const [logged, Setlogged] = useState(false);
@@ -36,6 +39,7 @@ function App() {
 				<Route path="/VaihdaSalasana" element={<VaihdaSalasana />} />
 				<Route path="/lisaakayttaja" element={<AddUser />} />
 				<Route path="/joukkuehallinta" element={<Joukkuehallinta />} />
+				<Route path="/Tulostaulu" element={<Tulostaulu />} />
 			</Routes>
 			<Footer />
 		</div>
