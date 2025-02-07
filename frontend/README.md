@@ -123,5 +123,4 @@ This project is licensed under the MIT License. See the LICENSE file for details
 
 - [React](https://reactjs.org/)
 - [React Router](https://reactrouter.com/)
-- [Material-UI](https://mui.com/)
 
