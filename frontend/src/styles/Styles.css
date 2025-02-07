@@ -565,3 +565,74 @@ background-color: #371267;
   display: flex;
   justify-content: space-between;
 }
+
+/*********************************************AddUser********************************************/
+
+
+/*********************************************Tulostaulu********************************************/
+.Tulostaulu-background {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: url("../images/tausta.png") no-repeat center center;
+  background-size: cover;
+}
+
+
+
+.Tulostaulu-container {
+  background-color: #3b0764; 
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.4);
+  text-align: center;
+  width: 90%;
+  max-width: 600px;
+}
+
+.Tulostaulu-select {
+  margin-bottom: 16px;
+  background-color: #22d3ee; 
+  color: white;
+  border-radius: 12px;
+  font-size: 16px;
+  padding: 12px;
+  width: 100%;
+  border: none;
+  appearance: none;
+  font-weight: bold;
+}
+
+.Tulostaulu-select-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.Tulostaulu-select-wrapper::after {
+  content: "▼";
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-80%);
+  pointer-events: none;
+  color: white;
+}
+
+.Tulostaulu-list {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+  font-size: 18px;
+  color: #ffffff;
+}
+
+.Tulostaulu-list li {
+  margin: 10px 0;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  font-weight: bold;
+}
+/*********************************************Tulostaulu********************************************/
