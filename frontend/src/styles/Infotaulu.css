@@ -33,8 +33,10 @@
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); 
 }
 .content{
+    display: flex;
     justify-content: center;
     height: 100%;
+    align-items: center;
 }
 .login-title {
     font-size: 28px; 
