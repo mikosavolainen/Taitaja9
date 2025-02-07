@@ -1,12 +1,12 @@
 import React from "react";
-import "../styles/Etusivu.css";
+import "../styles/Styles.css";
 
 const Etusivu = () => {
 	return (
-		<div className="container">
-			<div className="contai2">
-				<div className="content">
-					<div className="toplist">
+		<div className="Etusivu-container">
+			<div className="Etusivu-contai2">
+				<div className="Etusivu-content">
+					<div className="Etusivu-toplist">
 						<h1>TOP 5</h1>
 						<h2>
 							<ol>
@@ -18,9 +18,9 @@ const Etusivu = () => {
 							</ol>
 						</h2>
 					</div>
-					<div className="info">
+					<div className="Etusivu-info">
 						<h1>Kisan tiedot</h1>
-						<div className="textia">
+						<div className="Etusivu-textia">
 							Lorem ipsum dolor sit amet, consectetur adipiscing
 							elit. Praesent dapibus, nulla ac tincidunt
 							convallis, libero metus vulputate nisl, sit amet
