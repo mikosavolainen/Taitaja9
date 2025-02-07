@@ -14,13 +14,18 @@ import Dashboard from "./pages/Dashboard";
 import { Routes, Route } from 'react-router-dom';
 import Joukkuehallinta from "./pages/JoukkueHallinta"
 import Login from "./pages/Login"
+import { useState } from 'react';
 function App() {
+	const [logged , Setlogged]= useState(false)
   return (
 		<div className="App">
-			<Header />
+		  <Header logged={logged} />
 			<Routes>
 				<Route path="/" element={<Etusivu />} />
-				<Route path="/login" element={<Login />} />
+				<Route
+					path="/login"
+					element={<Login Setlogged={Setlogged} />}
+				/>
 				<Route path="/Infotaulu" element={<Infotaulu />} />
 				<Route path="/Dashboard" element={<Dashboard />} />
 				<Route path="/ServerNotFound" element={<ServerNotFound />} />
@@ -30,7 +35,7 @@ function App() {
 				<Route path="/UusiKilpailu" element={<UusiKilpailu />} />
 				<Route path="/VaihdaSalasana" element={<VaihdaSalasana />} />
 				<Route path="/lisaakayttaja" element={<AddUser />} />
-				<Route path="/joukkuehallinta" element={<Joukkuehallinta />} />
+				<Route path="/logged ? "/dashboard" : "/login"" element={<Joukkuehallinta />} />
 			</Routes>
 			<Footer />
 		</div>
