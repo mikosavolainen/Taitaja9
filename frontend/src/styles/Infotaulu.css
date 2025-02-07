@@ -5,6 +5,7 @@
     background: url("../images/tausta.png") no-repeat center center;
     background-size: cover;
     position: relative;
+    z-index: -2;
 }
 .info-container::before {
     content: "";
@@ -15,6 +16,7 @@
     height: 100%;
     backdrop-filter: blur(2px);
     background: rgba(0, 0, 0, 0.4);
+        z-index: -1;
   }
 
 .info-box {
@@ -30,7 +32,10 @@
     align-items: center;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); 
 }
-
+.content{
+    justify-content: center;
+    height: 100%;
+}
 .login-title {
     font-size: 28px; 
     margin-bottom: 25px;
