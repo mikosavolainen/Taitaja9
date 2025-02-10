@@ -649,6 +649,7 @@ background-color: #371267;
   color: white;
       z-index: -2;
   padding-bottom: 75px;
+  min-height: 90vh;
 }
 .Etusivu-container::before {
   z-index: -1;
