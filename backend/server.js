@@ -1,5 +1,5 @@
 const express = require('express');
-const mongoose = require('mongoose');
+const sql = require('mssql');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const cors = require('cors');
@@ -11,55 +11,76 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-// Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/mydatabase', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-});
-
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', () => {
-    console.log('Connected to MongoDB');
-});
-
-// User Schema
-const userSchema = new mongoose.Schema({
-    username: { type: String, required: true, unique: true },
-    password: { type: String, required: true },
-});
-
-const User = mongoose.model('User', userSchema);
-
-// Time Record Schema
-const timeRecordSchema = new mongoose.Schema({
-    team: { type: String, required: true },
-    rasti: { type: String, required: true },
-    time: { type: String, required: true },
-    userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
-});
-
-const TimeRecord = mongoose.model('TimeRecord', timeRecordSchema);
+// Azure SQL Configuration
+const config = {
+    user: 'your_username',
+    password: 'your_password',
+    server: 'your_server.database.windows.net',
+    database: 'your_database',
+    options: {
+        encrypt: true, // Use this if you're on Windows Azure
+    },
+};
 
 // Secret key for JWT
 const JWT_SECRET = 'your_jwt_secret_key';
+
+// Connect to Azure SQL
+sql.connect(config)
+    .then(() => {
+        console.log('Connected to Azure SQL');
+    })
+    .catch((err) => {
+        console.error('Error connecting to Azure SQL', err);
+    });
+
+// User Registration Endpoint
+app.post('/register', async (req, res) => {
+    const { username, password } = req.body;
+
+    try {
+        const pool = await sql.connect(config);
+        const result = await pool.request()
+            .input('username', sql.NVarChar, username)
+            .query('SELECT * FROM Users WHERE username = @username');
+
+        if (result.recordset.length > 0) {
+            return res.status(400).json({ message: 'Username already exists' });
+        }
+
+        const hashedPassword = await bcrypt.hash(password, 10);
+        await pool.request()
+            .input('username', sql.NVarChar, username)
+            .input('password', sql.NVarChar, hashedPassword)
+            .query('INSERT INTO Users (username, password) VALUES (@username, @password)');
+
+        res.status(201).json({ message: 'User registered successfully' });
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
 
 // Login Endpoint
 app.post('/login', async (req, res) => {
     const { username, password } = req.body;
 
     try {
-        const user = await User.findOne({ username });
-        if (!user) {
+        const pool = await sql.connect(config);
+        const result = await pool.request()
+            .input('username', sql.NVarChar, username)
+            .query('SELECT * FROM Users WHERE username = @username');
+
+        if (result.recordset.length === 0) {
             return res.status(400).json({ message: 'Authentication failed' });
         }
 
+        const user = result.recordset[0];
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) {
             return res.status(400).json({ message: 'Authentication failed' });
         }
 
-        const token = jwt.sign({ id: user._id }, JWT_SECRET, { expiresIn: '1h' });
+        const token = jwt.sign({ id: user.id }, JWT_SECRET, { expiresIn: '1h' });
         res.json({ token });
     } catch (err) {
         res.status(500).json({ message: err.message });
@@ -84,14 +105,14 @@ app.post('/record-time', authenticateToken, async (req, res) => {
     const { team, rasti, time } = req.body;
 
     try {
-        const timeRecord = new TimeRecord({
-            team,
-            rasti,
-            time,
-            userId: req.user.id,
-        });
+        const pool = await sql.connect(config);
+        await pool.request()
+            .input('team', sql.NVarChar, team)
+            .input('rasti', sql.NVarChar, rasti)
+            .input('time', sql.NVarChar, time)
+            .input('userId', sql.Int, req.user.id)
+            .query('INSERT INTO TimeRecords (team, rasti, time, userId) VALUES (@team, @rasti, @time, @userId)');
 
-        await timeRecord.save();
         res.status(201).json({ message: 'Aika tallennettu onnistuneesti!' });
     } catch (err) {
         res.status(500).json({ message: err.message });
