@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "../styles/Styles.css";
 
 const Dashboard = () => {
-	const [userType, setUserType] = useState("admin"); // Change this to "admin" for admin user
+	const [userType, setUserType] = useState("normal"); // Change this to "admin" for admin user
 
 	return (
 		<div className="login-container">
@@ -13,7 +13,7 @@ const Dashboard = () => {
 						{userType === "admin" ? (
 							<>
 								<Link
-									to="/joukkuehallinta"
+									to="/admin-dashboard"
 									className="login-input">
 									joukkueiden hallintapaneeli
 								</Link>
