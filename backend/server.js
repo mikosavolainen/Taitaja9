@@ -13,10 +13,10 @@ app.use(express.json());
 
 // Azure SQL Configuration
 const config = {
-    user: 'your_username',
-    password: 'your_password',
-    server: 'your_server.database.windows.net',
-    database: 'your_database',
+    user: 'Taitaja',
+    password: 'Kissakala2.',
+    server: 'taitaja.database.windows.net',
+    database: 'Taitaja9',
     options: {
         encrypt: true, // Use this if you're on Windows Azure
     },
