@@ -1,0 +1,751 @@
+*{
+    font-family: "Ubuntu", sans-serif;
+    font-weight: bold; 
+}
+
+/********************************************* LOGIN PAGE ********************************************/
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background: url("../images/tausta.png") no-repeat center center;
+    background-size: cover;
+    color: #fff;
+}
+
+.login-content {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5); 
+}
+
+.login-box {
+    background: #8206FF;
+    border-radius: 40px; 
+    width: 500px;
+    height: 450px;
+    padding: 30px; 
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); 
+}
+
+.login-title {
+    font-size: 28px; 
+    margin-bottom: 25px;
+    color: #fff;
+    font-family: "Ubuntu", sans-serif;
+    font-weight: bold; 
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.login-input {
+    background: #06CFFF;
+    border: none;
+    border-radius: 15px; 
+    padding: 12px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    outline: none;
+    width: 80%; 
+    max-width: 350px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    color: #010101; 
+}
+
+.login-input:focus {
+    border: 2px solid #FFF; 
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8); 
+}
+
+.login-input::placeholder {
+    color: #333; 
+    opacity: 0.7;
+}
+
+.login-button {
+    background: #5603A3;
+    color: #FFF; 
+    border: none;
+    border-radius: 30px; 
+    padding: 15px;
+    font-size: 18px;
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 500; 
+    text-align: center;
+    width: 75%; 
+    max-width: 300px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background 0.3s ease, transform 0.2s ease; 
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); 
+}
+
+.login-button:hover {
+    background: #5C00B8;
+    transform: scale(1.05); 
+}
+
+/********************************************* LOGIN PAGE ********************************************/
+
+
+
+
+
+/********************************************* Rasti ajansyöttö PAGE ********************************************/
+
+.rasti-background {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url("../images/tausta.png") no-repeat center center;
+    background-size: cover;
+}
+
+
+.rasti-container {
+    background: #8206FF;
+    border-radius: 30px;
+    width: 400px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.rasti-title {
+    color: rgb(255, 255, 255);
+    font-size: 22px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.rasti-input {
+    background: #06CFFF;
+    border: none;
+    border-radius: 15px;
+    padding: 10px;
+    margin-bottom: 15px;
+    width: 100%;
+    font-size: 16px;
+    color: #010101;
+    text-align: center;
+}
+
+.rasti-time-inputs {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.rasti-time {
+    background: #06CFFF;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    width: 60px;
+    text-align: center;
+    font-size: 16px;
+    color: #010101;
+}
+
+.rasti-button {
+    background: #5603A3;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 15px;
+    font-size: 18px;
+    cursor: pointer;
+    width: 100%;
+    max-width: 300px;
+    margin-top: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.rasti-button:hover {
+    background: #4a009e;
+}
+
+/********************************************* Rasti ajansyöttö PAGE ********************************************/
+
+/*********************************************404 ja 500 sivut ********************************************/
+
+
+.not-found-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: url("../images/tausta.png") no-repeat center center;
+    background-size: cover;
+    position: relative;
+  }
+  
+  .not-found-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(2px);
+    background: rgba(0, 0, 0, 0.4);
+  }
+  
+  .error-content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .error-box {
+    background: #8000ff;
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    color: white;
+    max-width: 600px;
+    width: 90%;
+  }
+  
+  .error-code {
+    font-size: 120px;
+    font-weight: bold;
+    background: linear-gradient(270deg, #FFF 0%, rgba(6, 207, 255, 0.40) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .error-text {
+    font-size: 24px;
+    margin-top: 10px;
+  }
+  
+  .error-subtext {
+    font-size: 18px;
+    margin-top: 5px;
+  }
+  /*********************************************404 ja 500 sivut ********************************************/
+
+  /*********************************************Kilpailun lisäys********************************************/
+
+  .kilpailu-background {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url("../images/tausta.png") no-repeat center center;
+    background-size: cover;
+}
+.kilpailu-container {
+  background-color: #8206FF; 
+  border-radius: 16px;
+  padding: 20px;
+  max-width: 30%; 
+  margin: 5% auto; 
+  text-align: center;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.kilpailu-title {
+  color: #ffffff;
+  font-size: 1.25em; 
+  font-weight: bold;
+  margin-bottom: 1.25em; 
+}
+
+.kilpailu-input {
+  width: 90%; 
+  background-color: #00d9ff; 
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 1em; 
+  font-size: 1em; 
+  color: #010101; 
+}
+
+.kilpailu-button {
+  width: 90%; 
+  background-color: #5603A3; 
+  color: #ffffff; 
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 1em; 
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.kilpailu-button:hover {
+  background-color: #371267; 
+}
+
+/*********************************************Kilpailun lisäys********************************************/
+
+
+/********************************************* AddTeam PAGE ********************************************/
+
+.addteam-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: url("../images/tausta.png") no-repeat center center;
+  background-size: cover;
+  color: #fff;
+}
+
+.addteam-content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.addteam-box {
+  background: #8206FF;
+  border-radius: 40px;
+  width: 500px;
+  padding: 30px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.addteam-title {
+  font-size: 28px;
+  margin-bottom: 25px;
+  color: #fff;
+  font-family: "Ubuntu", sans-serif;
+  font-weight: bold;
+}
+
+.addteam-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.addteam-input {
+  display: inline-block;
+  background: #06CFFF;
+  border: none;
+  border-radius: 15px;
+  padding: 12px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  text-align: center;
+  cursor: pointer;
+  width: 80%;
+  max-width: 350px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  color: #000;
+  transition: background 0.3s ease;
+}
+
+.addteam-input:focus {
+  border: 2px solid #FFF;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+.addteam-input::placeholder {
+  color: #333;
+  opacity: 0.7;
+}
+
+.addteam-button {
+  background: #5603A3;
+  color: #FFF;
+  border: none;
+  border-radius: 30px;
+  padding: 15px;
+  font-size: 18px;
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 500;
+  text-align: center;
+  width: 75%;
+  max-width: 300px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.addteam-button:hover {
+  background: #5C00B8;
+  transform: scale(1.05);
+}
+.addteam-input:hover {
+  background: #05a4d9;
+}
+/********************************************* AddTeam PAGE ********************************************/
+
+
+/*********************************************Salasanan vaihto********************************************/
+  .salasana-background {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url("../images/tausta.png") no-repeat center center;
+    background-size: cover;
+}
+.salasana-container {
+  background-color: #8206FF; 
+  border-radius: 16px;
+  padding: 20px;
+  max-width: 30%; 
+  margin: 5% auto; 
+  text-align: center;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.salasana-title {
+  color: #ffffff;
+  font-size: 1.25em; 
+  font-weight: bold;
+  margin-bottom: 1.25em; 
+}
+
+.salasana-input {
+  width: 90%; 
+  background-color: #00d9ff; 
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 1em; 
+  font-size: 1em; 
+  color: #010101; 
+}
+
+.salasana-button {
+  width: 90%; 
+  background-color: #5603A3; 
+  color: #ffffff; 
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 1em; 
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.salasana-button:hover {
+  background-color: #371267; 
+}
+
+/*********************************************Salasanan vaihto********************************************/
+/*********************************************AddUser********************************************/
+
+.adduser-background {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: url("../images/tausta.png") no-repeat center center;
+  background-size: cover;
+}
+.adduser-container {
+background-color: #8206FF; 
+border-radius: 16px;
+padding: 20px;
+max-width: 30%; 
+margin: 5% auto; 
+text-align: center;
+box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.adduser-title {
+color: #ffffff;
+font-size: 1.25em; 
+font-weight: bold;
+margin-bottom: 1.25em; 
+}
+
+.adduser-inputbox {
+  width: calc(90% + 20px); 
+  background-color: #00d9ff; 
+  border: none;
+  border-radius: 8px;
+  padding: 10px 10px 10px 10px;
+  margin-bottom: 1em; 
+  font-size: 1em; 
+  color: #010101; 
+  }
+
+.adduser-input {
+width: 90%; 
+background-color: #00d9ff;
+
+border: none;
+border-radius: 8px;
+padding: 10px;
+margin-bottom: 1em; 
+font-size: 1em; 
+color: #010101; 
+}
+
+
+.adduser-button {
+width: 90%; 
+background-color: #5603A3; 
+color: #ffffff; 
+border: none;
+border-radius: 8px;
+padding: 12px;
+font-size: 1em; 
+font-weight: bold;
+cursor: pointer;
+box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.adduser-button:hover {
+background-color: #371267; 
+}
+
+/*********************************************AddUser********************************************/
+.links-container{
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  text-align: center;
+  align-items: center;
+}
+.rasti-button-small {
+    background: #5603A3;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 5px;
+    font-size: 10px;
+    cursor: pointer;
+    width: 10%;
+    max-width: 300px;
+    margin-top: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+.contain{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+/*********************************************AddUser********************************************/
+
+
+/*********************************************Tulostaulu********************************************/
+.Tulostaulu-background {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: url("../images/tausta.png") no-repeat center center;
+  background-size: cover;
+}
+
+
+
+.Tulostaulu-container {
+  background-color: #3b0764; 
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.4);
+  text-align: center;
+  width: 90%;
+  max-width: 600px;
+}
+
+.Tulostaulu-select {
+  margin-bottom: 16px;
+  background-color: #22d3ee; 
+  color: white;
+  border-radius: 12px;
+  font-size: 16px;
+  padding: 12px;
+  width: 100%;
+  border: none;
+  appearance: none;
+  font-weight: bold;
+}
+
+.Tulostaulu-select-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.Tulostaulu-select-wrapper::after {
+  content: "▼";
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-80%);
+  pointer-events: none;
+  color: white;
+}
+
+.Tulostaulu-list {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+  font-size: 18px;
+  color: #ffffff;
+}
+
+.Tulostaulu-list li {
+  margin: 10px 0;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  font-weight: bold;
+}
+/*********************************************Tulostaulu********************************************/
+
+/*********************************************Etusivu********************************************/
+
+.Etusivu-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background: url("../images/tausta.png") no-repeat center center;
+  background-size: cover;
+  position: relative;
+  color: white;
+      z-index: -2;
+  padding-bottom: 75px;
+  min-height: 90vh;
+}
+.Etusivu-container::before {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(2px);
+  background: rgba(0, 0, 0, 0.4);
+}
+.Etusivu-toplist {
+  width: 50%;
+  list-style-type: decimal;
+  list-style-position: inside;
+}
+.Etusivu-content {
+  display: flex;
+  align-items: center;
+}
+.Etusivu-toplist ol {
+  padding-left: 20px;
+}
+
+.Etusivu-toplist li {
+  font-size: 1.2rem; 
+  margin-bottom: 8px;
+  margin: 20px;
+}
+.Etusivu-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  justify-content: center; 
+  text-align: center;
+  width: 40%;
+}
+
+.Etusivu-textia {
+  width: 60%;
+  margin: 0 auto;
+  text-align: center;
+}
+.Etusivu-padding{
+  height: 100px;
+}
+
+/*********************************************Etusivu********************************************/
+/*********************************************Infotaulu********************************************/
+.infotaulu-info-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: url("../images/tausta.png") no-repeat center center;
+  background-size: cover;
+  position: relative;
+  z-index: -2;
+}
+.infotaulu-info-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(2px);
+  background: rgba(0, 0, 0, 0.4);
+      z-index: -1;
+}
+
+.infotaulu-info-box {
+  background: #8206FF;
+  border-radius: 40px; 
+  width: 500px;
+  height: 450px;
+  padding: 30px; 
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); 
+}
+.infotaulu-content{
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  align-items: center;
+}
+
+.infotaulu-keskelle {
+  margin: auto;
+  font-size: 24px;
+  font-style: italic;
+  font-weight: bold;
+  color: white;
+}
+/*********************************************Infotaulu********************************************/

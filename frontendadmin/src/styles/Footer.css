@@ -1,0 +1,20 @@
+footer{
+    background-image: linear-gradient(to right, #8206FF, #4E0499);
+    padding: 1em;
+    color: white;
+}
+a{
+    color: white;
+    text-decoration: none;
+}
+.links{
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.copyright{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}

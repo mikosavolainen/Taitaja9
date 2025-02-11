@@ -5,14 +5,11 @@ const Header = ({logged}) => {
 	let navigate = useNavigate();
 	return (
 		<header className="header">
-			<a href={logged ? "/dashboard" : "/"} className="logo">
-				TAITAJA9
-			</a>
+			<a href={logged ? "/dashboard" : "/"} className="logo">TAITAJA9</a>
 			<div className="buttons">
-				<button
-					onClick={() => navigate("/Dashboard")}
-					className="button">
-					Tulostaulu
+				<button className="button">Tulostaulu</button>
+				<button onClick={() => navigate("/login")} className="button">
+					Kirjautuminen
 				</button>
 			</div>
 		</header>
