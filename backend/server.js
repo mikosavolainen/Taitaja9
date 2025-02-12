@@ -55,21 +55,44 @@ app.post('/lisaajoukkue', upload.single('file'), (req, res) => {
     const teams = [];
 
     fs.createReadStream(filePath)
-        .pipe(csv())
+        .pipe(csv({ separator: ';', headers: false })) // Parse rows without assuming a header row
         .on('data', (row) => {
-            teams.push([row.kilpailu_id, row.koulun_nimi, row.joukkueen_nimi, row.ryhman_numero]);
+            console.log(row); // Log each row for debugging
+
+            // Extract values from the row
+            const ryhma = row[0]; // Group name
+            const koulu = row[1]; // School name
+            const joukkue = row[2]; // Team name
+
+            // Filter out empty rows
+            if (ryhma && koulu && joukkue) {
+                teams.push([koulu, joukkue, ryhma]);
+            }
         })
         .on('end', () => {
-            const query = 'INSERT INTO Joukkueet (kilpailu_id, koulun_nimi, joukkueen_nimi, ryhman_numero) VALUES ?';
+            // Log the teams array for debugging
+
+            // Handle empty teams array
+            if (teams.length === 0) {
+                return res.status(400).json({ message: 'No valid data found in the CSV file' });
+            }
+
+            // Construct the SQL query
+            const query = 'INSERT INTO Joukkueet (koulun_nimi, joukkueen_nimi, ryhman_numero) VALUES ?';
+
+            // Execute the query
             db.query(query, [teams], (err, result) => {
                 if (err) {
+                    console.error(err); // Log the error for debugging
                     return res.status(500).json({ message: err.message });
                 }
                 res.status(201).json({ message: 'Teams added successfully' });
             });
+
+            // Clean up the uploaded file
+            fs.unlinkSync(filePath);
         });
 });
-
 
 app.post('/lisaakayttaja', async (req, res) => {
     const { kayttajanimi, salasana, rooli } = req.body;

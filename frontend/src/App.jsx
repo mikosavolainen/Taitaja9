@@ -17,7 +17,6 @@ function App() {
 			<Routes>
 				<Route path="/" element={<Etusivu />} />
 				<Route path="/Infotaulu" element={<Infotaulu />} />
-				<Route path="/Dashboard" element={<Dashboard />} />
 				<Route path="/ServerNotFound" element={<ServerNotFound />} />
 				<Route path="/NotFound" element={<NotFound />} />
 			</Routes>

@@ -12,7 +12,7 @@ import { Routes, Route } from "react-router-dom";
 import Joukkuehallinta from "./pages/JoukkueHallinta";
 import Login from "./pages/Login";//
 import Tulostaulu from './pages/Tulostaulu';//
-
+import Dashboard from "./pages/Dashboard";
 
 import { useState } from "react";
 function App() {
@@ -21,10 +21,8 @@ function App() {
 		<div className="App">
 			<Header logged={logged} />
 			<Routes>
-				<Route
-					path="/"
-					element={<Login Setlogged={Setlogged} />}
-				/>
+				<Route path="/" element={<Login Setlogged={Setlogged} />} />
+				<Route path="/Dashboard" element={<Dashboard />} />
 				<Route path="/ServerNotFound" element={<ServerNotFound />} />
 				<Route path="/NotFound" element={<NotFound />} />
 				<Route path="/RastiInput" element={<RastiInput />} />

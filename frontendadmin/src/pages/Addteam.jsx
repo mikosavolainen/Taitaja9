@@ -8,16 +8,28 @@ const AddTeam = () => {
 		setCsvFile(e.target.files[0]);
 	};
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 		if (csvFile) {
-			const reader = new FileReader();
-			reader.onload = (event) => {
-				const csvData = event.target.result;
-				// Process CSV data here
-				console.log(csvData);
-			};
-			reader.readAsText(csvFile);
+			const formData = new FormData();
+			formData.append("file", csvFile);
+
+			try {
+				const response = await fetch("/lisaajoukkue", {
+					method: "POST",
+					body: formData,
+				});
+
+				if (response.ok) {
+					const result = await response.json();
+					console.log(result.message); // Success message
+				} else {
+					const error = await response.json();
+					console.error(error.message); // Error message
+				}
+			} catch (error) {
+				console.error("Error uploading file:", error);
+			}
 		}
 	};
 
