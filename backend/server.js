@@ -7,6 +7,11 @@ const multer = require('multer');
 const fs = require('fs');
 const csv = require('csv-parser');
 const app = express();
+const bodyParser = require('body-parser');
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
 const PORT = process.env.PORT || 5000;
 
 // Middleware
@@ -176,13 +181,15 @@ app.put('/joukkuemuokkaus/:id', (req, res) => {
 
 app.post('/kirjaudu', async (req, res) => {
     const { kayttajanimi, salasana } = req.body;
-    const query = 'SELECT * FROM Kayttajat WHERE kayttajanimi = ?';
+    console.log(req.body)
+    console.log(kayttajanimi)
+    const query = 'SELECT * FROM kayttajat WHERE kayttajanimi = ?';
     db.query(query, [kayttajanimi], async (err, results) => {
         if (err) {
             return res.status(500).json({ message: err.message });
         }
         if (results.length === 0) {
-            return res.status(400).json({ message: 'Authentication failed' });
+            return res.status(400).json({ message: 'No user found' });
         }
         const user = results[0];
         const isMatch = await bcrypt.compare(salasana, user.salasana_hash);
