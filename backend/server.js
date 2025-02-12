@@ -94,21 +94,32 @@ app.post('/lisaajoukkue', upload.single('file'), (req, res) => {
         });
 });
 
-app.post('/lisaakayttaja', async (req, res) => {
+app.post("/lisaakayttaja", async (req, res) => {
     const { kayttajanimi, salasana, rooli } = req.body;
-    try {
-        const hashedPassword = await bcrypt.hash(salasana, 10);
-        const query = 'INSERT INTO Kayttajat (kayttajanimi, salasana_hash, rooli) VALUES (?, ?, ?)';
-        db.query(query, [kayttajanimi, hashedPassword, rooli], (err, result) => {
-            if (err) {
-                return res.status(500).json({ message: err.message });
-            }
-            res.status(201).json({ message: 'User added successfully' });
-        });
-    } catch (err) {
-        res.status(500).json({ message: err.message });
+  
+   
+    if (!kayttajanimi || !salasana || !rooli) {
+      return res.status(400).json({ message: "Kaikki kentät ovat pakollisia!" });
     }
-});
+  
+    try {
+ 
+      const hashedPassword = await bcrypt.hash(salasana, 10);
+  
+      const query = "INSERT INTO Kayttajat (kayttajanimi, salasana_hash, rooli) VALUES (?, ?, ?)";
+  
+
+      db.query(query, [kayttajanimi, hashedPassword, rooli], (err, result) => {
+        if (err) {
+          return res.status(500).json({ message: err.message });
+        }
+        res.status(201).json({ message: "Käyttäjä luotu onnistuneesti!" });
+      });
+    } catch (err) {
+      res.status(500).json({ message: "Jokin meni pieleen.", error: err.message });
+    }
+  });
+  
 
 
 app.get('/top5', (req, res) => {
