@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import "../styles/Styles.css";
 import { useNavigate } from "react-router-dom";
 
-const Login = ({ setLogged }) => {
-	const [username, setUsername] = useState("");
-	const [password, setPassword] = useState("");
+const Login = ({ setLogg }) => {
+	const [kayttajanimi, setUsername] = useState("");
+	const [salasana, setPassword] = useState("");
 	const [error, setError] = useState(null);
 	let navigate = useNavigate();
 
@@ -12,12 +12,12 @@ const Login = ({ setLogged }) => {
 		event.preventDefault(); // Prevent page reload
 
 		try {
-			const response = await fetch("https://your-backend-api.com/login", {
+			const response = await fetch("http://localhost:5000/kirjaudu", {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
 				},
-				body: JSON.stringify({ username, password }),
+				body: JSON.stringify({ kayttajanimi, salasana }),
 			});
 
 			if (!response.ok) {
@@ -47,14 +47,14 @@ const Login = ({ setLogged }) => {
 							type="text"
 							placeholder="Käyttäjänimi"
 							className="login-input"
-							value={username}
+							value={kayttajanimi}
 							onChange={(e) => setUsername(e.target.value)}
 						/>
 						<input
 							type="password"
 							placeholder="Salasana"
 							className="login-input"
-							value={password}
+							value={salasana}
 							onChange={(e) => setPassword(e.target.value)}
 						/>
 						<button type="submit" className="login-button">
