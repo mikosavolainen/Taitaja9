@@ -16,12 +16,12 @@ import Dashboard from "./pages/Dashboard";
 
 import { useState } from "react";
 function App() {
-	const [logged, Setlogged] = useState(false);
+	const [Token, SetToken] = useState("");
 	return (
 		<div className="App">
-			<Header logged={logged} />
+			<Header logged={Token} />
 			<Routes>
-				<Route path="/" element={<Login Setlogg={Setlogged} />} />
+				<Route path="/" element={<Login SetToken={SetToken} />} />
 				<Route path="/Dashboard" element={<Dashboard />} />
 				<Route path="/ServerNotFound" element={<ServerNotFound />} />
 				<Route path="/NotFound" element={<NotFound />} />

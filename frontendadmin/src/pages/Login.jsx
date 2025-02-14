@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../styles/Styles.css";
 import { useNavigate } from "react-router-dom";
 
-const Login = ({ setLogg }) => {
+const Login = ({ SetToken }) => {
 	const [kayttajanimi, setUsername] = useState("");
 	const [salasana, setPassword] = useState("");
 	const [error, setError] = useState(null);
@@ -29,7 +29,7 @@ const Login = ({ setLogg }) => {
 			// You might want to store the token in localStorage or context
 			localStorage.setItem("token", data.token);
 
-			setLogged(true);
+			SetToken(data.token);
 			navigate("/Dashboard");
 		} catch (err) {
 			setError(err.message);
