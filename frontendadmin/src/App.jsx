@@ -19,7 +19,7 @@ function App() {
 	const [Token, SetToken] = useState("");
 	return (
 		<div className="App">
-			<Header logged={logged} />
+			<Header logged={Token} />
 			<Routes>
 				<Route path="/" element={<Login SetToken={SetToken} />} />
 				<Route path="/Dashboard" element={<Dashboard />} />
