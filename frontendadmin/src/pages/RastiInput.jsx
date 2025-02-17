@@ -24,11 +24,12 @@ const RastiInput = () => {
 
 		try {
 			const response = await fetch(
-				"https://your-backend-api.com/record-time",
+				"http://localhost:5000/ajankirjaus",
 				{
 					method: "POST",
 					headers: {
 						"Content-Type": "application/json",
+						"authorization": `Bearer ${localStorage.getItem("token")}`,
 					},
 					body: JSON.stringify({
 						team: selectedTeam,
