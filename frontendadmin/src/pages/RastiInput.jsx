@@ -1,126 +1,180 @@
 import * as React from "react";
 import "../styles/Styles.css";
 
-const teams = ["Team A", "Team B", "Team C", "Team D"];
-const rastis = ["Rasti 1", "Rasti 2", "Rasti 3", "Rasti 4"];
-
 const RastiInput = () => {
-	const [selectedTeam, setSelectedTeam] = React.useState("");
-	const [selectedRasti, setSelectedRasti] = React.useState("");
-	const [minutes, setMinutes] = React.useState("");
-	const [seconds, setSeconds] = React.useState("");
-	const [successMessage, setSuccessMessage] = React.useState("");
-	const [errorMessage, setErrorMessage] = React.useState("");
+    const [selectedTeamId, setSelectedTeamId] = React.useState(""); // Store team ID
+    const [selectedRasti, setSelectedRasti] = React.useState(null); // Store selected checkpoint object
+    const [minutes, setMinutes] = React.useState("");
+    const [seconds, setSeconds] = React.useState("");
+    const [successMessage, setSuccessMessage] = React.useState("");
+    const [errorMessage, setErrorMessage] = React.useState("");
+    const [teams, setTeams] = React.useState([]); // State to hold fetched teams
+    const [rastis, setRastis] = React.useState([]); // State to hold fetched checkpoints
 
-	const handleSubmit = async (event) => {
-		event.preventDefault(); // Prevent form submission
+    // Fetch teams and rastis from the backend on component mount
+    React.useEffect(() => {
+        const fetchTeams = async () => {
+            try {
+                const response = await fetch("http://localhost:5000/joukkueet");
+                if (!response.ok) {
+                    throw new Error("Failed to fetch teams");
+                }
+                const data = await response.json();
+                setTeams(data); // Store the full team objects
+            } catch (error) {
+                console.error("Error fetching teams:", error);
+                setErrorMessage("Joukkueiden hakeminen epäonnistui.");
+            }
+        };
 
-		// Validate inputs
-		if (!selectedTeam || !selectedRasti || !minutes || !seconds) {
-			setErrorMessage("Kaikki kentät on täytettävä.");
-			setSuccessMessage("");
-			return;
-		}
+        const fetchRastis = async () => {
+            try {
+                const response = await fetch("http://localhost:5000/rastit");
+                if (!response.ok) {
+                    throw new Error("Failed to fetch checkpoints");
+                }
+                const data = await response.json();
+                setRastis(data); // Store the fetched checkpoints
+            } catch (error) {
+                console.error("Error fetching checkpoints:", error);
+                setErrorMessage("Rastien hakeminen epäonnistui.");
+            }
+        };
 
-		try {
-			const response = await fetch(
-				"https://your-backend-api.com/record-time",
-				{
-					method: "POST",
-					headers: {
-						"Content-Type": "application/json",
-					},
-					body: JSON.stringify({
-						team: selectedTeam,
-						rasti: selectedRasti,
-						time: `${minutes}:${seconds}`,
-					}),
-				}
-			);
+        fetchTeams();
+        fetchRastis();
+    }, []);
 
-			if (!response.ok) {
-				throw new Error("Ajan kirjaus epäonnistui");
-			}
+    const handleSubmit = async (event) => {
+        event.preventDefault(); // Prevent form submission
 
-			const data = await response.json();
-			setSuccessMessage("Aika tallennettu onnistuneesti!");
-			setErrorMessage("");
-			// Optionally, clear the form fields after successful submission
-			setSelectedTeam("");
-			setSelectedRasti("");
-			setMinutes("");
-			setSeconds("");
-		} catch (err) {
-			setErrorMessage(err.message);
-			setSuccessMessage("");
-		}
-	};
+        // Validate inputs
+        if (!selectedTeamId || !selectedRasti || !minutes || !seconds) {
+            setErrorMessage("Kaikki kentät on täytettävä.");
+            setSuccessMessage("");
+            return;
+        }
 
-	return (
-		<div className="rasti-background">
-			<div className="rasti-container">
-				<h2 className="rasti-title">Ajan kirjaus</h2>
+        try {
+            const maxTimeInSeconds = selectedRasti.maksimi_aika_sekunneissa;
+            const enteredMinutes = parseInt(minutes, 10);
+            const enteredSeconds = parseInt(seconds, 10);
 
-				{successMessage && (
-					<p className="success-message">{successMessage}</p>
-				)}
-				{errorMessage && (
-					<p className="error-message">{errorMessage}</p>
-				)}
+            // Calculate total time in seconds
+            const enteredTimeInSeconds = enteredMinutes * 60 + enteredSeconds;
 
-				<select
-					className="rasti-input"
-					value={selectedTeam}
-					onChange={(e) => setSelectedTeam(e.target.value)}>
-					<option value="">Joukkue</option>
-					{teams.map((team) => (
-						<option key={team} value={team}>
-							{team}
-						</option>
-					))}
-				</select>
+            if (enteredTimeInSeconds > maxTimeInSeconds) {
+                throw new Error(
+                    `Aika ylitti rastin ${selectedRasti.rasti_numero} maksimiajan (${maxTimeInSeconds / 60} minuuttia).`
+                );
+            }
 
-				<select
-					className="rasti-input"
-					value={selectedRasti}
-					onChange={(e) => setSelectedRasti(e.target.value)}>
-					<option value="">Rasti</option>
-					{rastis.map((rasti) => (
-						<option key={rasti} value={rasti}>
-							{rasti}
-						</option>
-					))}
-				</select>
+            const response = await fetch("http://localhost:5000/ajankirjaus", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+					authorization: `Bearer ${localStorage.getItem("token")}`, // Ensure the token exists
+				},
+				body: JSON.stringify({
+					joukkue_id: selectedTeamId,
+					rasti_id: selectedRasti.id,
+					suoritusaika_sekunneissa: enteredTimeInSeconds,
+				}),
+			});
 
-				<div className="rasti-time-inputs">
-					<input
-						className="rasti-time"
-						type="number"
-						min="0"
-						placeholder="MIN"
-						value={minutes}
-						onChange={(e) =>
-							setMinutes(Math.max(0, e.target.value))
-						}
-					/>
-					<input
-						className="rasti-time"
-						type="number"
-						min="0"
-						placeholder="SEC"
-						value={seconds}
-						onChange={(e) =>
-							setSeconds(Math.max(0, e.target.value))
-						}
-					/>
-				</div>
+            if (!response.ok) {
+                throw new Error("Ajan kirjaus epäonnistui");
+            }
 
-				<button className="rasti-button" onClick={handleSubmit}>
-					Tallenna
-				</button>
-			</div>
-		</div>
-	);
+            const data = await response.json();
+            setSuccessMessage("Aika tallennettu onnistuneesti!");
+            setErrorMessage("");
+
+            // Optionally, clear the form fields after successful submission
+            setSelectedTeamId("");
+            setSelectedRasti(null);
+            setMinutes("");
+            setSeconds("");
+        } catch (err) {
+            setErrorMessage(err.message);
+            setSuccessMessage("");
+        }
+    };
+
+    return (
+        <div className="rasti-background">
+            <div className="rasti-container">
+                <h2 className="rasti-title">Ajan kirjaus</h2>
+                {successMessage && (
+                    <p className="success-message">{successMessage}</p>
+                )}
+                {errorMessage && (
+                    <p className="error-message">{errorMessage}</p>
+                )}
+                <select
+                    className="rasti-input"
+                    value={selectedTeamId}
+                    onChange={(e) => setSelectedTeamId(e.target.value)}
+                >
+                    <option value="">Joukkue</option>
+                    {teams.length > 0 ? (
+                        teams.map((team) => (
+                            <option key={team.id} value={team.id}>
+                                {team.joukkueen_nimi}
+                            </option>
+                        ))
+                    ) : (
+                        <option disabled>Ei joukkueita saatavilla</option>
+                    )}
+                </select>
+                <select
+                    className="rasti-input"
+                    value={selectedRasti?.id || ""}
+                    onChange={(e) => {
+                        const selectedRastiId = e.target.value;
+                        const selectedCheckpoint = rastis.find(
+                            (rasti) => rasti.id === parseInt(selectedRastiId)
+                        );
+                        setSelectedRasti(selectedCheckpoint || null);
+                    }}
+                >
+                    <option value="">Rasti</option>
+                    {rastis.length > 0 ? (
+                        rastis.map((rasti) => (
+                            <option key={rasti.id} value={rasti.id}>
+                                Rasti {rasti.rasti_numero} (Max:{" "}
+                                {Math.floor(rasti.maksimi_aika_sekunneissa / 60)}:
+                                {rasti.maksimi_aika_sekunneissa % 60})
+                            </option>
+                        ))
+                    ) : (
+                        <option disabled>Ei rasteja saatavilla</option>
+                    )}
+                </select>
+                <div className="rasti-time-inputs">
+                    <input
+                        className="rasti-time"
+                        type="number"
+                        min="0"
+                        placeholder="MIN"
+                        value={minutes}
+                        onChange={(e) => setMinutes(Math.max(0, e.target.value))}
+                    />
+                    <input
+                        className="rasti-time"
+                        type="number"
+                        min="0"
+                        placeholder="SEC"
+                        value={seconds}
+                        onChange={(e) => setSeconds(Math.max(0, e.target.value))}
+                    />
+                </div>
+                <button className="rasti-button" onClick={handleSubmit}>
+                    Tallenna
+                </button>
+            </div>
+        </div>
+    );
 };
 
 export default RastiInput;
