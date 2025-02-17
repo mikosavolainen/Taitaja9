@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../styles/Styles.css";
 import { useNavigate } from "react-router-dom";
 
-const Login = ({ SetToken }) => {
+const Login = ({ SetToken, setUserType }) => {
 	const [kayttajanimi, setUsername] = useState("");
 	const [salasana, setPassword] = useState("");
 	const [error, setError] = useState(null);
@@ -28,7 +28,7 @@ const Login = ({ SetToken }) => {
 			// Assuming the server returns a token or some kind of success message
 			// You might want to store the token in localStorage or context
 			localStorage.setItem("token", data.token);
-
+			setUserType(data.usertype);
 			SetToken(data.token);
 			navigate("/Dashboard");
 		} catch (err) {

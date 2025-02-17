@@ -1,9 +1,9 @@
 const express = require('express');
-const mysql = require('mysql'); 
+const mysql = require('mysql');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const cors = require('cors');
-const multer = require('multer'); 
+const multer = require('multer');
 const fs = require('fs');
 const csv = require('csv-parser');
 const app = express();
@@ -20,11 +20,11 @@ app.use(express.json());
 
 
 const db = mysql.createConnection({
-    host: 'taitaja9.mysql.database.azure.com', 
-    user: 'taitaja9', 
-    password: 'Kissakala12.', 
-    database: 'Taitaja9', 
-    port: 3306,  
+    host: 'taitaja9.mysql.database.azure.com',
+    user: 'taitaja9',
+    password: 'Kissakala12.',
+    database: 'Taitaja9',
+    port: 3306,
     ssl: true
 });
 
@@ -101,30 +101,30 @@ app.post('/lisaajoukkue', upload.single('file'), (req, res) => {
 
 app.post("/lisaakayttaja", async (req, res) => {
     const { kayttajanimi, salasana, rooli } = req.body;
-  
-   
-    if (!kayttajanimi || !salasana || !rooli) {
-      return res.status(400).json({ message: "Kaikki kentät ovat pakollisia!" });
-    }
-  
-    try {
- 
-      const hashedPassword = await bcrypt.hash(salasana, 10);
-  
-      const query = "INSERT INTO Kayttajat (kayttajanimi, salasana_hash, rooli) VALUES (?, ?, ?)";
-  
 
-      db.query(query, [kayttajanimi, hashedPassword, rooli], (err, result) => {
-        if (err) {
-          return res.status(500).json({ message: err.message });
-        }
-        res.status(201).json({ message: "Käyttäjä luotu onnistuneesti!" });
-      });
-    } catch (err) {
-      res.status(500).json({ message: "Jokin meni pieleen.", error: err.message });
+
+    if (!kayttajanimi || !salasana || !rooli) {
+        return res.status(400).json({ message: "Kaikki kentät ovat pakollisia!" });
     }
-  });
-  
+
+    try {
+
+        const hashedPassword = await bcrypt.hash(salasana, 10);
+
+        const query = "INSERT INTO Kayttajat (kayttajanimi, salasana_hash, rooli) VALUES (?, ?, ?)";
+
+
+        db.query(query, [kayttajanimi, hashedPassword, rooli], (err, result) => {
+            if (err) {
+                return res.status(500).json({ message: err.message });
+            }
+            res.status(201).json({ message: "Käyttäjä luotu onnistuneesti!" });
+        });
+    } catch (err) {
+        res.status(500).json({ message: "Jokin meni pieleen.", error: err.message });
+    }
+});
+
 
 
 app.get('/top5', (req, res) => {
@@ -197,7 +197,7 @@ app.post('/kirjaudu', async (req, res) => {
             return res.status(400).json({ message: 'Authentication failed' });
         }
         const token = jwt.sign({ id: user.id }, JWT_SECRET, { expiresIn: '1h' });
-        res.json({ token });
+        res.json({ token, usertype: user.rooli });
     });
 });
 

@@ -2,8 +2,8 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import "../styles/Styles.css";
 
-const Dashboard = () => {
-	const [userType, setUserType] = useState("normal"); // Change this to "admin" for admin user
+const Dashboard = ({ userType }) => {
+	// Change this to "admin" for admin user
 
 	return (
 		<div className="login-container">
