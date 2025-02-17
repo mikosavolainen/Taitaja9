@@ -161,7 +161,18 @@ app.get('/joukkueet', (req, res) => {
         if (err) {
             return res.status(500).json({ message: err.message });
         }
-        res.status(200).json(results);
+        res.status(200).json(results); 
+    });
+});
+
+
+app.get('/rastit', (req, res) => {
+    const query = 'SELECT * FROM rastit';
+    db.query(query, (err, results) => {
+        if (err) {
+            return res.status(500).json({ message: err.message });
+        }
+        res.status(200).json(results); 
     });
 });
 
