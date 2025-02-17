@@ -749,3 +749,28 @@ background-color: #371267;
   color: white;
 }
 /*********************************************Infotaulu********************************************/
+
+
+.Vietiedot {
+  background: #ff0000;
+  border: none;
+  border-radius: 15px; 
+  padding: 12px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  outline: none;
+  width: 80%; 
+  max-width: 350px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  color: #010101; 
+}
+
+.Vietiedot:focus {
+  border: 2px solid #FFF; 
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8); 
+}
+
+.Vietiedot::placeholder {
+  color: #333; 
+  opacity: 0.7;
+}
