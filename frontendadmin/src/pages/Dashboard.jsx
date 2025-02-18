@@ -34,46 +34,60 @@ const Dashboard = ({ userType }) => {
 	};
 
     return (
-        <div className="login-container">
-            <div className="login-content">
-                <div className="login-box">
-                    <div className="links-container">
-                        {userType === "admin" ? (
-                            <>
-                                <Link to="/admin-dashboard" className="login-input">
-                                    joukkueiden hallintapaneeli
-                                </Link>
-                                <Link to="/UusiKilpailu" className="login-input">
-                                    Uusi kilpailu
-                                </Link>
-                                <Link to="/lisaajoukkue" className="login-input">
-                                    Lisää joukkueita csv:n avulla
-                                </Link>
-                                <Link to="/lisaakayttaja" className="login-input">
-                                    Tee uusia käyttäjiä
-                                </Link>
-                                <Link to="/VaihdaSalasana" className="login-input">
-                                    Vaihda salasanaa
-                                </Link>
-                                <button onClick={handleExportAndClear} className="Vietiedot">
-                                    Tallenna ja Poista
-                                </button>
-                            </>
-                        ) : (
-                            <>
-                                <Link to="/RastiInput" className="login-input">
-                                    Lisää joukkueelle aika
-                                </Link>
-                                <Link to="/VaihdaSalasana" className="login-input">
-                                    Vaihda salasanaa
-                                </Link>
-                            </>
-                        )}
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
+		<div className="login-container">
+			<div className="login-content">
+				<div className="login-box">
+					<div className="links-container">
+						{userType === "admin" ? (
+							<>
+								<Link
+									to="/joukkuehallinta"
+									className="login-input">
+									joukkueiden hallintapaneeli
+								</Link>
+								<Link
+									to="/UusiKilpailu"
+									className="login-input">
+									Uusi kilpailu
+								</Link>
+								<Link
+									to="/lisaajoukkue"
+									className="login-input">
+									Lisää joukkueita csv:n avulla
+								</Link>
+								<Link
+									to="/lisaakayttaja"
+									className="login-input">
+									Tee uusia käyttäjiä
+								</Link>
+								<Link
+									to="/VaihdaSalasana"
+									className="login-input">
+									Vaihda salasanaa
+								</Link>
+								<button
+									onClick={handleExportAndClear}
+									className="Vietiedot">
+									Tallenna ja Poista
+								</button>
+							</>
+						) : (
+							<>
+								<Link to="/RastiInput" className="login-input">
+									Lisää joukkueelle aika
+								</Link>
+								<Link
+									to="/VaihdaSalasana"
+									className="login-input">
+									Vaihda salasanaa
+								</Link>
+							</>
+						)}
+					</div>
+				</div>
+			</div>
+		</div>
+	);
 };
 
 export default Dashboard;
