@@ -292,41 +292,31 @@ app.post('/export-and-clear', (req, res) => {
 
         try {
             // Step 1: Export data from each table to a CSV file
-            const promises = tableNames.map(async (tableName) => {
+            for (const tableName of tableNames) {
                 const query = `SELECT * FROM ${tableName}`;
-                return new Promise((resolve, reject) => {
+                const rows = await new Promise((resolve, reject) => {
                     db.query(query, (err, rows) => {
                         if (err) {
                             console.error(`Error fetching data from table ${tableName}:`, err);
                             return reject(err);
                         }
-
-                        if (rows.length > 0) {
-                            const headers = Object.keys(rows[0]).map(key => ({ id: key, title: key }));
-                            const csvPath = path.join(uploadDir, `${tableName}.csv`);
-                            const csvWriter = createCsvWriter({
-                                path: csvPath,
-                                header: headers
-                            });
-
-                            csvWriter.writeRecords(rows)
-                                .then(() => {
-                                    console.log(`CSV file created for table ${tableName}`);
-                                    csvFiles.push(csvPath);
-                                    resolve();
-                                })
-                                .catch(err => {
-                                    console.error(`Error writing CSV for table ${tableName}:`, err);
-                                    reject(err);
-                                });
-                        } else {
-                            resolve(); // Skip empty tables
-                        }
+                        resolve(rows);
                     });
                 });
-            });
 
-            await Promise.all(promises);
+                if (rows.length > 0) {
+                    const headers = Object.keys(rows[0]).map(key => ({ id: key, title: key }));
+                    const csvPath = path.join(uploadDir, `${tableName}.csv`);
+                    const csvWriter = createObjectCsvWriter({
+                        path: csvPath,
+                        header: headers
+                    });
+
+                    await csvWriter.writeRecords(rows);
+                    console.log(`CSV file created for table ${tableName}`);
+                    csvFiles.push(csvPath);
+                }
+            }
 
             // Step 2: Create a ZIP archive of all CSV files
             const zipFilePath = path.join(uploadDir, 'database_backup.zip');
@@ -339,17 +329,14 @@ app.post('/export-and-clear', (req, res) => {
                 // Step 3: Send the ZIP file as a response
                 res.setHeader('Content-disposition', 'attachment; filename=database_backup.zip');
                 res.setHeader('Content-type', 'application/zip');
-
-                // Lue ZIP-tiedosto ja lähetä se vastauksena
                 const fileStream = fs.createReadStream(zipFilePath);
-                fileStream.pipe(res); // Lähettää ZIP-tiedoston käyttäjälle
+                fileStream.pipe(res);
 
-                // Poista ZIP-tiedosto ja CSV-tiedostot sen jälkeen
+                // Step 4: Clear all tables after sending the ZIP file
                 fileStream.on('close', () => {
                     fs.unlinkSync(zipFilePath); // Poista ZIP-tiedosto
                     csvFiles.forEach(file => fs.unlinkSync(file)); // Poista CSV-tiedostot
 
-                    // Tyhjennä kaikki taulut
                     tableNames.forEach(tableName => {
                         const clearQuery = `TRUNCATE TABLE ${tableName}`;
                         db.query(clearQuery, (clearErr) => {
