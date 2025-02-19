@@ -1,9 +1,5 @@
 # Taitaja9
 
-
-# Huomio!!!!!!!!!!!!!!!!!!!!!!!!!!!
-Admin Dashboardin Poista Ja Tallenna nappi ei toimi oikein sen pitäisi tallentaa tietokannan taulut, tehdä niistä .csv ja ladata ne käyttäjän koneelle jonka jälkeen tietokannan pitäisi tyhjentää kaikki muut paitsi käyttäjät taulun
-
 ## Overview
 
 Taitaja9 is a web application designed to manage and display information for a competition. The application includes features for user authentication, team management, and displaying competition results.

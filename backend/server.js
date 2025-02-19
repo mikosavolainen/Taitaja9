@@ -5,10 +5,7 @@ const jwt = require('jsonwebtoken');
 const cors = require('cors');
 const multer = require('multer');
 const fs = require('fs');
-const path = require('path'); // Lisää tämä rivi, jos sitä ei ole jo olemassa
 const csv = require('csv-parser');
-const createCsvWriter = require('csv-writer').createObjectCsvWriter;
-const archiver = require('archiver');
 const app = express();
 const bodyParser = require('body-parser');
 
@@ -319,98 +316,6 @@ app.post('/vaihdasalasana', authenticateToken, async (req, res) => {
     }
 });
 
-const uploadDir = path.join(__dirname, 'uploads');
-if (!fs.existsSync(uploadDir)) {
-    fs.mkdirSync(uploadDir);
-}
-
-app.post('/export-and-clear', (req, res) => {
-    const getTablesQuery = 'SHOW TABLES';
-    db.query(getTablesQuery, async (err, tablesResult) => {
-        if (err) {
-            return res.status(500).json({ message: 'Error fetching table names.' });
-        }
-
-        if (tablesResult.length === 0) {
-            return res.status(400).json({ message: 'No tables found in the database.' });
-        }
-
-        const tableNames = tablesResult.map(row => Object.values(row)[0]);
-        const csvFiles = [];
-
-        try {
-            // Step 1: Export data from each table to a CSV file
-            for (const tableName of tableNames) {
-                const query = `SELECT * FROM ${tableName}`;
-                const rows = await new Promise((resolve, reject) => {
-                    db.query(query, (err, rows) => {
-                        if (err) {
-                            console.error(`Error fetching data from table ${tableName}:`, err);
-                            return reject(err);
-                        }
-                        resolve(rows);
-                    });
-                });
-
-                if (rows.length > 0) {
-                    const headers = Object.keys(rows[0]).map(key => ({ id: key, title: key }));
-                    const csvPath = path.join(uploadDir, `${tableName}.csv`);
-                    const csvWriter = createObjectCsvWriter({
-                        path: csvPath,
-                        header: headers
-                    });
-
-                    await csvWriter.writeRecords(rows);
-                    console.log(`CSV file created for table ${tableName}`);
-                    csvFiles.push(csvPath);
-                }
-            }
-
-            // Step 2: Create a ZIP archive of all CSV files
-            const zipFilePath = path.join(uploadDir, 'database_backup.zip');
-            const output = fs.createWriteStream(zipFilePath);
-            const archive = archiver('zip', { zlib: { level: 9 } });
-
-            output.on('close', () => {
-                console.log('ZIP file created.');
-
-                // Step 3: Send the ZIP file as a response
-                res.setHeader('Content-disposition', 'attachment; filename=database_backup.zip');
-                res.setHeader('Content-type', 'application/zip');
-                const fileStream = fs.createReadStream(zipFilePath);
-                fileStream.pipe(res);
-
-                // Step 4: Clear all tables after sending the ZIP file
-                fileStream.on('close', () => {
-                    fs.unlinkSync(zipFilePath); // Poista ZIP-tiedosto
-                    csvFiles.forEach(file => fs.unlinkSync(file)); // Poista CSV-tiedostot
-
-                    tableNames.forEach(tableName => {
-                        const clearQuery = `TRUNCATE TABLE ${tableName}`;
-                        db.query(clearQuery, (clearErr) => {
-                            if (clearErr) {
-                                console.error(`Error clearing table ${tableName}:`, clearErr);
-                            } else {
-                                console.log(`Table ${tableName} cleared.`);
-                            }
-                        });
-                    });
-                });
-            });
-
-            archive.on('error', (err) => {
-                console.error('Error creating ZIP file:', err);
-                res.status(500).json({ message: 'Error creating ZIP file.' });
-            });
-
-            csvFiles.forEach(file => archive.file(file, { name: path.basename(file) }));
-            archive.finalize();
-        } catch (err) {
-            console.error('Error exporting data:', err);
-            res.status(500).json({ message: 'Error exporting data.' });
-        }
-    });
-});
 
 // Start the Server
 app.listen(PORT, () => {
