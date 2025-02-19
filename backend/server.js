@@ -8,6 +8,7 @@ const fs = require('fs');
 const csv = require('csv-parser');
 const app = express();
 const bodyParser = require('body-parser');
+const { createConnection } = require('net');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -19,7 +20,7 @@ app.use(cors());
 app.use(express.json());
 
 
-const connection = mysql.createConnection({
+const db = mysql.createConnection({
     host: 'taitaja9.mysql.database.azure.com',
     user: 'taitaja9',
     password: 'Kissakala12.',
@@ -32,12 +33,12 @@ const connection = mysql.createConnection({
 
 
 // Attach an error listener
-connection.on('error', (err) => {
-    console.error('MySQL connection error:', err);
+db.on('error', (err) => {
+    console.error('MySQL db error:', err);
 
-    // Check if the error is due to a lost connection
-    if (err.code === 'PROTOCOL_CONNECTION_LOST' || err.code === 'ECONNRESET') {
-        console.error('Connection lost. Attempting to reconnect...');
+    // Check if the error is due to a lost db
+    if (err.code === 'PROTOCOL_db_LOST' || err.code === 'ECONNRESET') {
+        console.error('db lost. Attempting to reconnect...');
         reconnect();
     } else {
         throw err; // Rethrow other errors
@@ -46,18 +47,18 @@ connection.on('error', (err) => {
 
 // Function to reconnect
 function reconnect() {
-    // Destroy the old connection
-    if (connection) {
-        connection.destroy();
+    // Destroy the old db
+    if (db) {
+        db.destroy();
     }
 
-    // Create a new connection
-    connection = createConnection();
+    // Create a new db
+    db = createConnection();
 
     // Reconnect and attach the error listener again
-    connection.connect((err) => {
+    db.connect((err) => {
         if (err) {
-            console.error('Reconnection failed:', err);
+            console.error('Redb failed:', err);
             setTimeout(reconnect, 5000); // Retry after 5 seconds
         } else {
             console.log('Reconnected successfully!');
@@ -65,9 +66,9 @@ function reconnect() {
     });
 
     // Reattach the error listener
-    connection.on('error', (err) => {
-        console.error('MySQL connection error during reconnection:', err);
-        if (err.code === 'PROTOCOL_CONNECTION_LOST' || err.code === 'ECONNRESET') {
+    db.on('error', (err) => {
+        console.error('MySQL db error during redb:', err);
+        if (err.code === 'PROTOCOL_db_LOST' || err.code === 'ECONNRESET') {
             reconnect();
         } else {
             throw err;
@@ -75,11 +76,11 @@ function reconnect() {
     });
 }
 
-// Initial connection
-connection.connect((err) => {
+// Initial db
+db.connect((err) => {
     if (err) {
-        console.error('Initial connection failed:', err);
-        reconnect(); // Attempt to reconnect if the initial connection fails
+        console.error('Initial db failed:', err);
+        reconnect(); // Attempt to reconnect if the initial db fails
     } else {
         console.log('Connected to MySQL successfully!');
     }
