@@ -64,7 +64,7 @@ README.md
 
 1. Clone the repository:
    ```sh
-   git clone https://github.com/yourusername/Taitaja9.git
+   git clone https://github.com/mikosavolainen/Taitaja9.git
    ```
 2. Navigate to the `backend` directory and install dependencies:
    ```sh
