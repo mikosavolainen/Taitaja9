@@ -52,7 +52,7 @@ const Joukkuehallinta = () => {
 			const updatedTeam = {
 				joukkueen_nimi: name,
 				koulun_nimi: school,
-				ryhman_numero: groupNumber || null, // Send null if empty
+				ryhman_numero: groupNumber, // Send null if empty
 				keskeyttanyt: hasDroppedOut ? 1 : 0, // Convert boolean to 1 or 0
 			};
 
@@ -78,7 +78,7 @@ const Joukkuehallinta = () => {
 							...team,
 							joukkueen_nimi: name,
 							koulun_nimi: school,
-							ryhman_numero: groupNumber || null,
+							ryhman_numero: groupNumber ,
 							keskeyttanyt: hasDroppedOut ? 1 : 0,
 					  }
 					: team
@@ -86,7 +86,7 @@ const Joukkuehallinta = () => {
 			setTeams(updatedTeams);
 
 			// Clear error message
-			setErrorMessage("");
+			setErrorMessage("Päivitys onnistuis");
 		} catch (error) {
 			console.error("Error updating team:", error);
 			setErrorMessage("Joukkueen päivitys epäonnistui.");
@@ -133,7 +133,7 @@ const Joukkuehallinta = () => {
 				/>
 				<input
 					className="login-input"
-					type="number"
+					type="text"
 					placeholder="Ryhmän numero"
 					value={groupNumber}
 					onChange={(e) => setGroupNumber(e.target.value)}
