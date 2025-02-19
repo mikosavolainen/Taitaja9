@@ -1,5 +1,6 @@
 # Taitaja9
-
+# Kehitys idea HUOM!!!!!!!!!!!!!!!!!
+Jälkikäteen mietittynä lisätkää nappi josta pystyy tyhjentämään tietokannan kaikki muut paitsi käyttäjä taulun jotta sovelluksen käyttö kilpailusta toiseen helpottuisi, Nappiin olisi ehkä hyvä laittaa myös varmistus oletko todella varma ja että admin käyttäjän pitää syöttää salasana ennen kuin mitään voi tehdä
 ## Overview
 
 Taitaja9 is a web application designed to manage and display information for a competition. The application includes features for user authentication, team management, and displaying competition results.
