@@ -32,11 +32,59 @@ const db = mysql.createConnection({
 });
 
 
-db.connect((err) => {
-    if (err) {
-        console.error('Error connecting to MySQL:', err);
+let connection = createConnection();
+
+// Attach an error listener
+connection.on('error', (err) => {
+    console.error('MySQL connection error:', err);
+
+    // Check if the error is due to a lost connection
+    if (err.code === 'PROTOCOL_CONNECTION_LOST' || err.code === 'ECONNRESET') {
+        console.error('Connection lost. Attempting to reconnect...');
+        reconnect();
     } else {
-        console.log('Connected to MySQL');
+        throw err; // Rethrow other errors
+    }
+});
+
+// Function to reconnect
+function reconnect() {
+    // Destroy the old connection
+    if (connection) {
+        connection.destroy();
+    }
+
+    // Create a new connection
+    connection = createConnection();
+
+    // Reconnect and attach the error listener again
+    connection.connect((err) => {
+        if (err) {
+            console.error('Reconnection failed:', err);
+            setTimeout(reconnect, 5000); // Retry after 5 seconds
+        } else {
+            console.log('Reconnected successfully!');
+        }
+    });
+
+    // Reattach the error listener
+    connection.on('error', (err) => {
+        console.error('MySQL connection error during reconnection:', err);
+        if (err.code === 'PROTOCOL_CONNECTION_LOST' || err.code === 'ECONNRESET') {
+            reconnect();
+        } else {
+            throw err;
+        }
+    });
+}
+
+// Initial connection
+connection.connect((err) => {
+    if (err) {
+        console.error('Initial connection failed:', err);
+        reconnect(); // Attempt to reconnect if the initial connection fails
+    } else {
+        console.log('Connected to MySQL successfully!');
     }
 });
 
