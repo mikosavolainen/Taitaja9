@@ -3,36 +3,6 @@ import { Link } from "react-router-dom";
 import "../styles/Styles.css";
 
 const Dashboard = ({ userType }) => {
-    const handleExportAndClear = async () => {
-        try {
-            const response = await fetch("http://localhost:5000/export-and-clear", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            });
-    
-            if (!response.ok) {
-                throw new Error("Verkkopalvelu palautti virheen.");
-            }
-    
-           
-            const blob = await response.blob();
-            const url = window.URL.createObjectURL(blob);
-    
-            
-            const link = document.createElement("a");
-            link.href = url;
-            link.setAttribute("download", "database_backup.zip"); 
-            document.body.appendChild(link);
-            link.click(); 
-            link.remove();
-        } catch (error) {
-            console.error("Virhe viennissä ja tyhjentämisessä:", error);
-            alert("Tapahtui virhe viennissä ja tyhjentämisessä.");
-        }
-    };
-
     return (
 		<div className="login-container">
 			<div className="login-content">
@@ -65,11 +35,6 @@ const Dashboard = ({ userType }) => {
 									className="login-input">
 									Vaihda salasanaa
 								</Link>
-								<button
-									onClick={handleExportAndClear}
-									className="Vietiedot">
-									Tallenna ja Poista
-								</button>
 							</>
 						) : (
 							<>
