@@ -22,7 +22,7 @@ app.use(cors());
 app.use(express.json());
 
 
-const db = mysql.createConnection({
+const connection = mysql.createConnection({
     host: 'taitaja9.mysql.database.azure.com',
     user: 'taitaja9',
     password: 'Kissakala12.',
@@ -32,7 +32,7 @@ const db = mysql.createConnection({
 });
 
 
-let connection = createConnection();
+
 
 // Attach an error listener
 connection.on('error', (err) => {
