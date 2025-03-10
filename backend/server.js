@@ -87,7 +87,7 @@ db.connect((err) => {
 });
 
 
-const JWT_SECRET = 'Heh meidän salainen avain :O. ei oo ku meiän! ・:，。★＼(v)♪Merry Xmas♪(v)/★，。・:・゜ :DD XD XRP ┐( ͡◉ ͜ʖ ͡◉)┌ QSO QRZ ( ͡~ ͜ʖ ͡° ) QRO ( ˘▽˘)っ♨ QRP DLR JKFJ °₊·ˈ∗♡( ˃̶᷇ ‧̫ ˂̶᷆ )♡∗ˈ‧₊°';
+const JWT_SECRET = 'CHANGE ME';
 
 
 function authenticateToken(req, res, next) {
