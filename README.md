@@ -1,6 +1,7 @@
 # Taitaja9
 ## YHTEYSTIEDOT	 
 Discord: miksa4343 siellä saa vastauskia mihin vaan projektiin liittyviin kysymyksiin
+
 Email: admin@oh3cyt.com
 # Kehitys idea HUOM!!!!!!!!!!!!!!!!!
 Jälkikäteen mietittynä lisätkää nappi josta pystyy tyhjentämään tietokannan kaikki muut paitsi käyttäjä taulun jotta sovelluksen käyttö kilpailusta toiseen helpottuisi, Nappiin olisi ehkä hyvä laittaa myös varmistus oletko todella varma ja että admin käyttäjän pitää syöttää salasana ennen kuin mitään voi tehdä
