@@ -1,4 +1,7 @@
 # Taitaja9
+## HUOM!!!!!!!!!!!!!!!
+Tietokantaa viedessä phpmyadmin kautta kytkekää viiteavaimen tarkistus pois päältä muuten se heittää erroria
+
 ## YHTEYSTIEDOT	 
 Discord: miksa4343 siellä saa vastauskia mihin vaan projektiin liittyviin kysymyksiin
 
