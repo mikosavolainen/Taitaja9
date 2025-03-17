@@ -15,7 +15,7 @@ const AddTeam = () => {
 			formData.append("file", csvFile);
 
 			try {
-				const response = await fetch("/lisaajoukkue", {
+				const response = await fetch("http://localhost:5000/lisaajoukkue", {
 					method: "POST",
 					body: formData,
 				});
