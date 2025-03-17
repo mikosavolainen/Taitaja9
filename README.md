@@ -17,9 +17,6 @@ Taitaja9 is a web application designed to manage and display information for a c
 The project is structured as follows:
 
 ```
-.github/
-	workflows/
-		main_taitajabackend.yml
 backend/
 	.gitignore
 	package.json
